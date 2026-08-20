@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png?v=aleron-a-fade-20260602">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=aleron-a-fade-20260602">
 <link rel="shortcut icon" href="assets/favicon.ico?v=aleron-a-fade-20260602">
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   /* PolySans — the brand voice (variable: Slim→Bulky). Matches Figma's "PolySans Neutral" at weight 400. */
   @font-face {
@@ -22,7 +22,8 @@
     font-display: swap;
   }
   :root {
-    --voice: 'PolySans', 'Hanken Grotesk', -apple-system, sans-serif;
+    --voice: 'PolySans', 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    --audit: 'Space Mono', ui-monospace, Menlo, monospace;
     --gold: #C9A14E;
     --indigo: #252B3D;
     --page-bg: #fffefb;
@@ -56,7 +57,7 @@
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-family: var(--voice);
     background: var(--deck-light-bg);
     color: var(--text);
     -webkit-font-smoothing: antialiased;
@@ -75,7 +76,7 @@
   }
 
   .slide-headline {
-    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--voice);
     font-size: 48px;
     font-weight: 500;
     color: var(--navy);
@@ -104,7 +105,7 @@
   }
 
   .chart-label {
-    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--voice);
     font-size: 20px;
     font-weight: 700;
     letter-spacing: -0.02em;
@@ -207,7 +208,7 @@
     background: #F6F4EE !important;
   }
   .qol-source-title {
-    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--voice);
     font-size: clamp(32px, 3.25vw, 44px);
     font-weight: 500;
     letter-spacing: -0.05em;
@@ -284,7 +285,7 @@
     width: 100%;
     background: transparent; border: none; padding: 6px 0;
     font-size: 14px; letter-spacing: 0.1px; color: var(--ink);
-    font-family: 'Inter', sans-serif; cursor: pointer;
+    font-family: var(--voice); cursor: pointer;
     user-select: none; line-height: 1.2;
     text-align: left;
   }
@@ -317,7 +318,7 @@
   .legend-refs { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 10px; padding-top: 12px; border-top: 1px solid rgba(10,10,11,0.06); justify-content: flex-start; }
   .legend-ref { display: inline-flex; align-items: center; gap: 10px;
     padding: 4px 0; font-size: 12px; color: var(--text-muted);
-    font-family: 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 0.2px; }
+    font-family: var(--audit); letter-spacing: 0.2px; }
   .legend-ref .ref-label { white-space: nowrap; }
   .legend-ref .dash { display: inline-block; width: 32px; height: 0;
     border-top: 1.5px dashed rgba(10,10,11,0.45); }
@@ -349,13 +350,13 @@
     margin-bottom: 10px;
   }
   .ctl-name {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--voice);
     font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
     font-weight: 600; color: var(--text-muted);
   }
   .ctl-val {
     color: var(--ink); font-variant-numeric: tabular-nums;
-    font-family: 'Inter Tight', sans-serif;
+    font-family: var(--voice);
     font-size: 17px; font-weight: 500;
     letter-spacing: -0.01em;
   }
@@ -388,19 +389,19 @@
   /* ============ SVG ELEMENT BASE STYLES ============ */
   .ax-tick { stroke: var(--chart-tick); }
   .ax-label { fill: var(--text-muted); font-size: 13px;
-    font-family: 'JetBrains Mono', ui-monospace, monospace; }
+    font-family: var(--audit); }
   .ref-curve { fill: none; stroke: rgba(10,10,11,0.38); stroke-width: 1.4;
     stroke-dasharray: 6 5; opacity: 0.72; }
   .patient-curve { fill: none; stroke: var(--gold-deep); stroke-width: 2.4;
     stroke-dasharray: 9 5; opacity: 0.95; }
   .patient-marker { fill: var(--gold-deep); stroke: var(--chart-bg); stroke-width: 2; }
   .ref-label { fill: var(--text-muted); font-size: 13px;
-    font-family: 'JetBrains Mono', ui-monospace, monospace; }
+    font-family: var(--audit); }
   .patient-label { fill: #67451E; font-size: 13px;
-    font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 600; }
+    font-family: var(--audit); font-weight: 600; }
   .event-marker { fill: #A44938; opacity: 1; }
   .event-label { fill: var(--text-muted); font-size: 13px;
-    font-family: 'Inter', sans-serif; font-weight: 600; }
+    font-family: var(--voice); font-weight: 600; }
 
   .qol-source-tool .chart-wrap { border-radius: 14px !important; }
   .qol-source-tool .ctl { border-radius: 12px !important; }
@@ -707,7 +708,7 @@
     gap: 32px;
   }
   .signal-sources-title {
-    font-family: 'Inter Tight', 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--voice);
     font-size: clamp(28px, 3.7vw, 52px);
     line-height: 1.06;
     letter-spacing: -0.032em;
@@ -777,9 +778,9 @@
   --ease: cubic-bezier(.2, .7, .2, 1);
 }
 .exp-section .container { width: 100%; max-width: none; margin: 0; padding: 0; position: relative; }
-.exp-section .display { font-family: 'Inter Tight', 'Inter', sans-serif; font-weight: 500; letter-spacing: -0.028em; line-height: 1.0; }
+.exp-section .display { font-family: var(--voice); font-weight: 500; letter-spacing: -0.028em; line-height: 1.0; }
 .exp-section .h2 { font-size: clamp(42px, 6.8vw, 88px); }
-.exp-section .lede { font-family: 'Inter', sans-serif; font-weight: 400; font-size: clamp(19px, 1.6vw, 22px); line-height: 1.5; color: var(--text-muted); max-width: 56ch; }
+.exp-section .lede { font-family: var(--voice); font-weight: 400; font-size: clamp(19px, 1.6vw, 22px); line-height: 1.5; color: var(--text-muted); max-width: 56ch; }
 .exp-section .fade-in { opacity: 1; transform: none; }
 
 /* ============ EXPERIENCE SECTION (04) — lowercase-a full-screen editorial split ============ */
@@ -815,9 +816,9 @@
 }
 .exp-pane-step {
   display: block;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--audit);
   font-weight: 500;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--rust-lower);
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -849,7 +850,7 @@
 .exp-split-half img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .exp-split-tag {
   position: absolute; left: 14px; top: 14px;
-  font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
+  font-family: var(--audit); font-size: 12px; font-weight: 600;
   letter-spacing: 0.14em; text-transform: uppercase; color: #fff;
   background: rgba(26,26,26,0.62); backdrop-filter: blur(4px);
   padding: 7px 11px; border-radius: 0;
@@ -868,7 +869,7 @@
 }
 .exp-pane.is-active { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .exp-copy h3 {
-  font-family: 'Inter Tight', sans-serif; font-weight: 500;
+  font-family: var(--voice); font-weight: 500;
   font-size: clamp(30px, 3vw, 44px); line-height: 1.02;
   margin: 0 0 20px; max-width: none; letter-spacing: -0.045em;
   color: var(--ink);
@@ -877,14 +878,14 @@
 .exp-copy h3 em { font: inherit; color: inherit; }
 .exp-copy p { font-size: 17px; line-height: 1.62; color: var(--text-muted); margin: 0 0 28px; max-width: 48ch; }
 .exp-integ-label {
-  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--rust-lower); font-weight: 600; margin-top: 0; margin-bottom: 14px;
 }
 .exp-stat-row { display: grid; grid-template-columns: repeat(2,1fr); gap: 22px; margin-top: 2px; max-width: 480px; }
 .exp-stat { border-top: 1px solid rgba(65,76,106,0.26); padding-top: 18px; min-height: 86px; }
-.exp-stat-num { font-family: 'Inter Tight', sans-serif; font-style: normal; font-weight: 600; font-size: 34px; color: var(--navy-lower); line-height: 1; }
+.exp-stat-num { font-family: var(--voice); font-style: normal; font-weight: 600; font-size: 34px; color: var(--navy-lower); line-height: 1; }
 .exp-stat-num small { font-size: 16px; opacity: 0.62; }
-.exp-stat-lbl { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #6f6a61; font-weight: 500; margin-top: 10px; }
+.exp-stat-lbl { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #6f6a61; font-weight: 500; margin-top: 10px; }
 
 .exp-logos { display: grid; grid-template-columns: repeat(4,1fr); gap: 9px; max-width: 410px; }
 .exp-provider-logo {
@@ -908,7 +909,7 @@
 .exp-provider-logo.invitae img { max-height: 38px; }
 .exp-marker-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; max-width: 640px !important; margin: 0 !important; }
 .exp-marker-list .marker-group { border: 1px solid rgba(65,76,106,0.14); background: rgba(255,254,251,0.62); padding: 8px 10px; }
-.exp-marker-list .marker-group b { display: block; margin-bottom: 3px; color: var(--navy-lower); font-size: 10.5px; letter-spacing: 0.11em; text-transform: uppercase; font-weight: 650; }
+.exp-marker-list .marker-group b { display: block; margin-bottom: 3px; color: var(--navy-lower); font-size: 12px; letter-spacing: 0.11em; text-transform: uppercase; font-weight: 650; }
 .exp-marker-list .marker-group span { display: block; color: #5f5b54; font-size: 12px; line-height: 1.32; font-weight: 450; }
 .exp-marker-list .more { grid-column: 1 / -1; }
 .exp-logo-cell {
@@ -936,7 +937,7 @@
   max-height: 50%;
 }
 .exp-logo-cell .logo-wm {
-  font-family: 'Inter Tight', sans-serif;
+  font-family: var(--voice);
   font-size: 14px;
   color: var(--navy-lower);
   line-height: 1;
@@ -966,7 +967,7 @@
   color: rgba(65,76,106,0.58);
   padding: 0 0 12px;
   border-radius: 0 !important;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--voice);
   font-size: 12.5px;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -975,7 +976,7 @@
   transition: color 0.25s ease, border-color 0.25s ease;
 }
 .exp-tab .num {
-  font-family: 'Inter Tight', sans-serif;
+  font-family: var(--voice);
   font-style: normal;
   font-weight: 600;
   font-size: 12.5px;
@@ -1191,7 +1192,7 @@
   .team-proof-title {
     margin: 0;
     max-width: 440px;
-    font-family: 'PolySans', 'Inter', sans-serif;
+    font-family: var(--voice);
     font-size: clamp(42px, 3.5vw, 54px);
     line-height: .98;
     letter-spacing: -.05em;
@@ -1254,7 +1255,7 @@
     .team-proof-title { max-width: 560px; }
     .team-proof-people { gap: 12px; }
     .team-proof-name { white-space: normal; font-size: 15px; }
-    .team-proof-role { font-size: 11px; }
+    .team-proof-role { font-size: 14px; }
   }
 </style>
 </head>
@@ -1537,7 +1538,7 @@
 <!-- SLIDE 4c: THE START IS JUST THE START -->
 <div class="slide" data-logo-tone="light" style="background:#222A3B;">
   <div style="max-width:1100px;width:100%;text-align:center;">
-    <div style="font-family:'Inter',ui-sans-serif,system-ui,sans-serif;font-size:52px;font-weight:800;color:#fffefb;letter-spacing:-2px;line-height:1.15;">
+    <div style="font-family:var(--voice);font-size:52px;font-weight:800;color:#fffefb;letter-spacing:-2px;line-height:1.15;">
       This is <span style="color:#c5a26e;">just the start.</span>
     </div>
     <div style="font-size:17px;color:rgba(255,254,251,0.5);margin-top:14px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6;">
@@ -1549,42 +1550,42 @@
       <!-- Card 1: Aleron AI -->
       <div style="background:#2A3347;border-radius:0;padding:24px;border:1px solid rgba(239,234,224,0.14);">
         <img src="assets/feature-icons/01-aleron-ai.png?v=feature-icons-dark-20260607b" alt="" style="width:90px;height:90px;object-fit:contain;display:block;margin:-4px 0 10px -8px;" loading="eager" decoding="async">
-        <div style="font-family:'Inter',ui-sans-serif,system-ui,sans-serif;font-size:18px;font-weight:700;color:#fffefb;margin-bottom:8px;">Aleron AI, grounded in your data</div>
+        <div style="font-family:var(--voice);font-size:18px;font-weight:700;color:#fffefb;margin-bottom:8px;">Aleron AI, grounded in your data</div>
         <div style="font-size:13px;color:rgba(239,234,224,0.62);line-height:1.6;">Aleron AI stays on between visits, grounded in your labs, genetics, wearables, imaging, and care plan. It watches for changes and keeps your physician current.</div>
       </div>
 
       <!-- Card 2: Digital biometrics -->
       <div style="background:#2A3347;border-radius:0;padding:24px;border:1px solid rgba(239,234,224,0.14);">
         <img src="assets/feature-icons/02-biometrics.png?v=feature-icons-dark-20260607b" alt="" style="width:90px;height:90px;object-fit:contain;display:block;margin:-4px 0 10px -8px;" loading="eager" decoding="async">
-        <div style="font-family:'Inter',ui-sans-serif,system-ui,sans-serif;font-size:18px;font-weight:700;color:#fffefb;margin-bottom:8px;">Continuous biometric monitoring</div>
+        <div style="font-family:var(--voice);font-size:18px;font-weight:700;color:#fffefb;margin-bottom:8px;">Continuous biometric monitoring</div>
         <div style="font-size:13px;color:rgba(239,234,224,0.62);line-height:1.6;">Sleep, HRV, resting heart rate, activity, tracked and analyzed over time. We catch the signal before you feel the symptom.</div>
       </div>
 
       <!-- Card 3: Labs every 6 months -->
       <div style="background:#2A3347;border-radius:0;padding:24px;border:1px solid rgba(239,234,224,0.14);">
         <img src="assets/feature-icons/03-plan-review.png?v=feature-icons-dark-20260607b" alt="" style="width:90px;height:90px;object-fit:contain;display:block;margin:-4px 0 10px -8px;" loading="eager" decoding="async">
-        <div style="font-family:'Inter',ui-sans-serif,system-ui,sans-serif;font-size:18px;font-weight:700;color:#fffefb;margin-bottom:8px;">Twice-yearly plan review</div>
+        <div style="font-family:var(--voice);font-size:18px;font-weight:700;color:#fffefb;margin-bottom:8px;">Twice-yearly plan review</div>
         <div style="font-size:13px;color:rgba(239,234,224,0.62);line-height:1.6;">Aleron reviews labs, wearable trends, records, symptoms, goals, and new research, then updates priorities around what changed in your actual risk.</div>
       </div>
 
       <!-- Card 4: Nutrition coaching -->
       <div style="background:#2A3347;border-radius:0;padding:24px;border:1px solid rgba(239,234,224,0.14);">
         <img src="assets/feature-icons/04-nutrition.png?v=feature-icons-dark-20260607b" alt="" style="width:90px;height:90px;object-fit:contain;display:block;margin:-4px 0 10px -8px;" loading="eager" decoding="async">
-        <div style="font-family:'Inter',ui-sans-serif,system-ui,sans-serif;font-size:18px;font-weight:700;color:#fffefb;margin-bottom:8px;">Nutrition coaching, built into your plan</div>
+        <div style="font-family:var(--voice);font-size:18px;font-weight:700;color:#fffefb;margin-bottom:8px;">Nutrition coaching, built into your plan</div>
         <div style="font-size:13px;color:rgba(239,234,224,0.62);line-height:1.6;">Guidance shaped by your labs, goals, preferences, and metabolic risk.</div>
       </div>
 
       <!-- Card 5: Behavioral therapist -->
       <div style="background:#2A3347;border-radius:0;padding:24px;border:1px solid rgba(239,234,224,0.14);">
         <img src="assets/feature-icons/05-behavioral.png?v=feature-icons-dark-20260607b" alt="" style="width:90px;height:90px;object-fit:contain;display:block;margin:-4px 0 10px -8px;" loading="eager" decoding="async">
-        <div style="font-family:'Inter',ui-sans-serif,system-ui,sans-serif;font-size:18px;font-weight:700;color:#fffefb;margin-bottom:8px;">Behavioral therapist support</div>
+        <div style="font-family:var(--voice);font-size:18px;font-weight:700;color:#fffefb;margin-bottom:8px;">Behavioral therapist support</div>
         <div style="font-size:13px;color:rgba(239,234,224,0.62);line-height:1.6;">Support turning priorities into routines, habits, and follow-through that fit real life.</div>
       </div>
 
       <!-- Card 6: Unlimited telemedicine -->
       <div style="background:#2A3347;border-radius:0;padding:24px;border:1px solid rgba(239,234,224,0.14);">
         <img src="assets/feature-icons/06-physician.png?v=feature-icons-dark-20260607b" alt="" style="width:90px;height:90px;object-fit:contain;display:block;margin:-4px 0 10px -8px;" loading="eager" decoding="async">
-        <div style="font-family:'Inter',ui-sans-serif,system-ui,sans-serif;font-size:18px;font-weight:700;color:#fffefb;margin-bottom:8px;">Unlimited physician access</div>
+        <div style="font-family:var(--voice);font-size:18px;font-weight:700;color:#fffefb;margin-bottom:8px;">Unlimited physician access</div>
         <div style="font-size:13px;color:rgba(239,234,224,0.62);line-height:1.6;">24/7 telemedicine with a physician who has your full picture: your data, your genetics, your history. No repeating yourself.</div>
       </div>
 
@@ -1596,7 +1597,7 @@
 <!-- SLIDE 4d: COMPETITIVE LANDSCAPE -->
 <div class="slide comparison-alt comparison-approved" data-logo-tone="dark" style="background:var(--deck-light-bg);padding:48px 60px;">
   <div style="max-width:1060px;width:100%;text-align:center;">
-    <div style="font-family:'Inter',ui-sans-serif,system-ui,sans-serif;font-size:48px;font-weight:700;color:var(--navy);letter-spacing:-0.045em;line-height:1.08;">
+    <div style="font-family:var(--voice);font-size:48px;font-weight:700;color:var(--navy);letter-spacing:-0.045em;line-height:1.08;">
       Aleron vs. <span style="color:var(--teal);">Consumer Market.</span>
     </div>
     <div style="font-size:15px;color:#6f6a61;margin-top:10px;margin-bottom:40px;">Annual pricing. <span style="color:#21563E;font-weight:800;">✓</span> Included &nbsp; <span style="color:#71420F;font-weight:800;">◐</span> Partial &nbsp; <span style="color:#7E2F2B;font-weight:800;">×</span> No</div>
@@ -1695,7 +1696,7 @@
 <!-- SLIDE 4e: EXECUTIVE HEALTH LANDSCAPE -->
 <div class="slide comparison-alt comparison-approved" data-logo-tone="dark" style="background:var(--deck-light-bg);padding:48px 60px;">
   <div style="max-width:1060px;width:100%;text-align:center;">
-    <div style="font-family:'Inter',ui-sans-serif,system-ui,sans-serif;font-size:48px;font-weight:700;color:var(--navy);letter-spacing:-0.045em;line-height:1.08;">
+    <div style="font-family:var(--voice);font-size:48px;font-weight:700;color:var(--navy);letter-spacing:-0.045em;line-height:1.08;">
       Aleron vs. <span style="color:var(--teal);">Executive Health.</span>
     </div>
     <div style="font-size:15px;color:#6f6a61;margin-top:10px;margin-bottom:40px;">Annual pricing. <span style="color:#21563E;font-weight:800;">✓</span> Included &nbsp; <span style="color:#71420F;font-weight:800;">◐</span> Partial &nbsp; <span style="color:#7E2F2B;font-weight:800;">×</span> No</div>
@@ -1786,7 +1787,7 @@
 <!-- SLIDE 05b: MARKET VALIDATION STATS -->
 <div class="slide" data-logo-tone="light" style="background:var(--navy);">
   <div style="max-width:1100px;width:100%;text-align:center;">
-    <div style="font-family:'Inter',ui-sans-serif,system-ui,sans-serif;font-size:56px;font-weight:800;color:#fffefb;letter-spacing:-2.5px;line-height:1.1;">
+    <div style="font-family:var(--voice);font-size:56px;font-weight:800;color:#fffefb;letter-spacing:-2.5px;line-height:1.1;">
       The market wants it.<br><span style="color:var(--mint);">No one's built it.</span>
     </div>
 
@@ -1795,21 +1796,21 @@
       <!-- Tile 1: Who we talked to -->
       <div style="background:rgba(255,255,255,0.04);border-radius:0;padding:56px 44px 52px;border:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;">
         <div style="min-height:180px;display:flex;flex-direction:column;justify-content:center;">
-          <div style="font-family:'Inter',ui-sans-serif,system-ui,sans-serif;font-size:84px;font-weight:800;color:var(--mint);letter-spacing:-4px;line-height:1;">23</div>
+          <div style="font-family:var(--voice);font-size:84px;font-weight:800;color:var(--mint);letter-spacing:-4px;line-height:1;">23</div>
           <div style="font-size:22px;color:#fffefb;font-weight:600;margin-top:12px;">interviews</div>
         </div>
         <div style="width:100px;height:2px;background:rgba(255,255,255,0.12);margin:0 auto;"></div>
         <table style="margin:28px auto 0;border-collapse:collapse;">
           <tr>
-            <td style="font-family:'Inter',sans-serif;font-size:32px;font-weight:800;color:var(--mint);letter-spacing:-1px;text-align:right;padding:4px 14px 4px 0;vertical-align:middle;">16</td>
+            <td style="font-family:var(--voice);font-size:32px;font-weight:800;color:var(--mint);letter-spacing:-1px;text-align:right;padding:4px 14px 4px 0;vertical-align:middle;">16</td>
             <td style="font-size:22px;font-weight:600;color:#fffefb;text-align:left;padding:4px 0;vertical-align:middle;">executives</td>
           </tr>
           <tr>
-            <td style="font-family:'Inter',sans-serif;font-size:32px;font-weight:800;color:var(--mint);letter-spacing:-1px;text-align:right;padding:4px 14px 4px 0;vertical-align:middle;">4</td>
+            <td style="font-family:var(--voice);font-size:32px;font-weight:800;color:var(--mint);letter-spacing:-1px;text-align:right;padding:4px 14px 4px 0;vertical-align:middle;">4</td>
             <td style="font-size:22px;font-weight:600;color:#fffefb;text-align:left;padding:4px 0;vertical-align:middle;">physicians</td>
           </tr>
           <tr>
-            <td style="font-family:'Inter',sans-serif;font-size:32px;font-weight:800;color:var(--mint);letter-spacing:-1px;text-align:right;padding:4px 14px 4px 0;vertical-align:middle;">3</td>
+            <td style="font-family:var(--voice);font-size:32px;font-weight:800;color:var(--mint);letter-spacing:-1px;text-align:right;padding:4px 14px 4px 0;vertical-align:middle;">3</td>
             <td style="font-size:22px;font-weight:600;color:#fffefb;text-align:left;padding:4px 0;vertical-align:middle;">VCs</td>
           </tr>
         </table>
@@ -1818,12 +1819,12 @@
       <!-- Tile 2: The duality -->
       <div style="background:rgba(255,255,255,0.04);border-radius:0;padding:56px 44px 52px;border:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;">
         <div style="min-height:180px;display:flex;flex-direction:column;justify-content:center;">
-          <div style="font-family:'Inter',ui-sans-serif,system-ui,sans-serif;font-size:84px;font-weight:800;color:var(--mint);letter-spacing:-4px;line-height:1;">96%</div>
+          <div style="font-family:var(--voice);font-size:84px;font-weight:800;color:var(--mint);letter-spacing:-4px;line-height:1;">96%</div>
           <div style="font-size:18px;color:#fffefb;font-weight:600;margin-top:12px;line-height:1.4;">believe the right medical team could bend their curve</div>
         </div>
         <div style="width:100px;height:2px;background:rgba(255,255,255,0.12);margin:0 auto;"></div>
         <div style="margin-top:28px;text-align:center;">
-          <div style="font-family:'Inter',sans-serif;font-size:48px;font-weight:800;color:#fffefb;letter-spacing:-2px;line-height:1;">9%</div>
+          <div style="font-family:var(--voice);font-size:48px;font-weight:800;color:#fffefb;letter-spacing:-2px;line-height:1;">9%</div>
           <div style="font-size:20px;color:rgba(255,254,251,0.5);font-weight:600;margin-top:10px;line-height:1.4;">believe they can find that team</div>
         </div>
       </div>
@@ -1831,7 +1832,7 @@
       <!-- Tile 3: The real barrier -->
       <div style="background:rgba(255,255,255,0.04);border-radius:0;padding:56px 44px 52px;border:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;">
         <div style="min-height:180px;display:flex;flex-direction:column;justify-content:center;">
-          <div style="font-family:'Inter',ui-sans-serif,system-ui,sans-serif;font-size:48px;font-weight:800;color:var(--mint);letter-spacing:-2px;line-height:1.1;">They have<br>the money.</div>
+          <div style="font-family:var(--voice);font-size:48px;font-weight:800;color:var(--mint);letter-spacing:-2px;line-height:1.1;">They have<br>the money.</div>
         </div>
         <div style="width:100px;height:2px;background:rgba(255,255,255,0.12);margin:0 auto;"></div>
         <div style="margin-top:28px;text-align:center;">
@@ -2109,7 +2110,7 @@ function render() {
       s += `<line x1="${PAD.l}" y1="${y0}" x2="${PAD.l + CW}" y2="${y0}" stroke="rgba(10,10,11,0.08)" stroke-width="0.5"/>`;
     }
     const yMid = (y0 + y1) / 2;
-    s += `<text x="${PAD.l - 44}" y="${yMid + 5}" text-anchor="end" style="fill:#3F3A32;font-size:14px;letter-spacing:0.1px;font-family:'Inter',sans-serif;font-weight:550">${b.name}</text>`;
+    s += `<text x="${PAD.l - 44}" y="${yMid + 5}" text-anchor="end" style="fill:#3F3A32;font-size:14px;letter-spacing:0.1px;font-family:var(--voice);font-weight:550">${b.name}</text>`;
   }
 
   // Y-axis ticks
