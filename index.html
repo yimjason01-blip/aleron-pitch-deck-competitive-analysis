@@ -299,6 +299,8 @@
   .simple-curve .curve-age { fill: #5A6378; font-size: 12px; }
   .simple-curve .curve-meta { fill: var(--ember); font-size: 12px; letter-spacing: .12em; }
   .simple-curve .curve-prob { font-family: var(--voice); fill: var(--ember); font-size: 32px; font-weight: 700; letter-spacing: -.03em; }
+  .simple-curve .curve-reference { fill: none; stroke: #5A6378; stroke-width: 1.5; stroke-dasharray: 7 6; opacity: .72; }
+  .simple-curve .curve-reference-label { font-family: var(--audit); fill: #5A6378; font-size: 12px; letter-spacing: .04em; }
   @media (max-width: 900px) {
     .simple-curve-slide { padding: 90px 20px 36px; min-height: 100vh; height: auto; }
     .simple-curve { width: 100%; }
@@ -1798,6 +1800,7 @@
     const baseline = age => baseCapacity(conditioning, age);
     const eventCurve = age => baseline(age) * diseaseFactor(age, event);
     const mainPath = pathFor(baseline);
+    const averagePath = pathFor(age => templateAt(TEMPLATES.average, age));
     let branchPath = `M${x(event.age).toFixed(1)} ${y(baseline(event.age)).toFixed(1)} `;
     branchPath += `L${x(event.age).toFixed(1)} ${y(eventCurve(event.age)).toFixed(1)} `;
     for (let age = Math.ceil(event.age); age <= AMAX; age += 1) branchPath += `L${x(age).toFixed(1)} ${y(eventCurve(age)).toFixed(1)} `;
@@ -1822,6 +1825,9 @@
     svg += `<text class="curve-zone" x="${PL - 16}" y="${zoneY[0] + 4}" text-anchor="end">ATHLETE</text>`;
     svg += `<text class="curve-zone" x="${PL - 16}" y="${zoneY[1] + 4}" text-anchor="end">INDEPENDENT</text>`;
     svg += `<text class="curve-zone" x="${PL - 16}" y="${zoneY[2] - 4}" text-anchor="end"><tspan x="${PL - 16}">DEPENDENT</tspan><tspan x="${PL - 16}" dy="14">ON OTHERS</tspan></text>`;
+    svg += `<path class="curve-reference" d="${averagePath}"/>`;
+    svg += `<line x1="${PL + 22}" y1="${PT + 22}" x2="${PL + 62}" y2="${PT + 22}" class="curve-reference"/>`;
+    svg += `<text class="curve-reference-label" x="${PL + 72}" y="${PT + 26}">AVERAGE AMERICAN</text>`;
     svg += `<path d="${mainPath}" fill="none" stroke="#1D1B18" stroke-width="2.6"/>`;
     svg += `<path d="${branchPath}" fill="none" stroke="#A4452C" stroke-width="2.6"/>`;
     svg += `<rect x="${x(AMIN)-4}" y="${y(baseline(AMIN))-4}" width="8" height="8" fill="#1D1B18"/>`;
