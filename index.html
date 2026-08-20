@@ -1229,23 +1229,26 @@
     color: #68665F;
   }
   .team-proof-logos {
-    height: 36px;
-    margin-top: 16px;
+    min-height: 94px;
+    margin-top: 18px;
     display: flex;
-    align-items: center;
-    gap: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
   }
   .team-proof-logos img {
     display: block;
     width: auto;
-    max-width: 46%;
-    max-height: 24px;
+    max-width: 82%;
+    max-height: 34px;
     object-fit: contain;
+    object-position: left center;
   }
-  .team-proof-logos .logo-wide { max-width: 54%; }
-  .team-proof-logos .logo-ge { max-width: 40%; }
-  .team-proof-logos .logo-usrc { max-width: 40%; }
-  .team-proof-logos .logo-hbs { max-width: 56%; }
+  .team-proof-logos .logo-wide { max-width: 92%; }
+  .team-proof-logos .logo-ge { max-width: 68%; }
+  .team-proof-logos .logo-usrc { max-width: 72%; }
+  .team-proof-logos .logo-hbs { max-width: 96%; }
   @media (max-width: 900px) {
     .team-proof-slide { height: auto; min-height: 100vh; grid-template-columns: 1fr; padding: 100px 24px 48px; }
     .team-proof-title { max-width: 560px; }
