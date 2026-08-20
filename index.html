@@ -1833,19 +1833,14 @@
     svg += `<rect x="${x(AMIN)-4}" y="${y(baseline(AMIN))-4}" width="8" height="8" fill="#1D1B18"/>`;
     svg += `<rect x="${x(AMAX)-4}" y="${y(baseline(AMAX))-4}" width="8" height="8" fill="#1D1B18"/>`;
 
-    const anchorX = Math.min(x(event.age) + 0.34 * (PR - x(event.age)), PR - 112);
-    const anchorAge = AMIN + ((anchorX - PL) / (PR - PL)) * (AMAX - AMIN);
-    const anchorY = y(eventCurve(anchorAge));
-    const below = anchorY < PB - 112;
-    const leaderEnd = anchorY + (below ? 28 : -28);
-    const labelY = anchorY + (below ? 46 : -86);
-    const probY = anchorY + (below ? 78 : -50);
-    const capY = anchorY + (below ? 96 : -30);
-    svg += `<circle cx="${anchorX}" cy="${anchorY}" r="4" fill="#A4452C"/>`;
-    svg += `<line x1="${anchorX}" y1="${anchorY}" x2="${anchorX}" y2="${leaderEnd}" stroke="#A4452C" stroke-width="1"/>`;
-    svg += `<text class="curve-meta" x="${anchorX}" y="${labelY}" text-anchor="middle">DISEASE EVENT</text>`;
-    svg += `<text class="curve-prob" x="${anchorX}" y="${probY}" text-anchor="middle">${Math.round(event.probability * 100)}%</text>`;
-    svg += `<text class="curve-meta" x="${anchorX}" y="${capY}" text-anchor="middle">PROBABILITY</text>`;
+    const anchorAge = Math.min(event.age + 9, 86);
+    const anchorX = x(anchorAge);
+    const redY = y(eventCurve(anchorAge));
+    const labelX = anchorX + 10;
+    svg += `<circle cx="${anchorX}" cy="${redY}" r="4" fill="#A4452C"/>`;
+    svg += `<line x1="${anchorX}" y1="${redY}" x2="${anchorX}" y2="${redY + 14}" stroke="#A4452C" stroke-width="1"/>`;
+    svg += `<text class="curve-prob" x="${labelX}" y="${redY + 44}" text-anchor="start">${Math.round(event.probability * 100)}%</text>`;
+    svg += `<text class="curve-meta" x="${labelX}" y="${redY + 62}" text-anchor="start">DISEASE EVENT</text>`;
     plot.innerHTML = svg;
   }
   [conditioningInput, riskInput].forEach(input => input.addEventListener('input', render));
