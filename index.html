@@ -218,15 +218,15 @@
   }
   .curve-instrument svg.plot {
     position: absolute;
-    top: 2vh;
+    top: -1vh;
     left: 0;
     width: 100%;
-    height: 72vh;
+    height: 78vh;
     display: block;
   }
   .curve-instrument .head {
     position: absolute;
-    top: 22px;
+    top: 8.2vh;
     left: 50%;
     transform: translateX(-50%);
     width: min(90vw, 1180px);
@@ -243,19 +243,19 @@
     letter-spacing: -.045em;
     line-height: 1.05;
     color: var(--navy);
-    font-size: clamp(28px, 3.2vw, 46px);
+    font-size: clamp(26px, 2.8vw, 40px);
   }
   .curve-instrument #cp-body, .curve-instrument .hint, .curve-instrument .cp-disc, .cp-event-readout { display: none !important; }
   .curve-instrument .axistitle { font-family: var(--audit); font-size: 14px; fill: #242426; letter-spacing: 0; }
   .curve-instrument .endlab { font-family: var(--audit); font-size: 14px; fill: #242426; letter-spacing: 0; text-anchor: end; }
   .curve-instrument .controls {
     position: absolute;
-    bottom: 4.8vh;
+    bottom: 2.2vh;
     left: 14%;
     right: 14%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(24px, 3vw, 56px);
+    gap: clamp(20px, 2.4vw, 44px);
     align-items: start;
     z-index: 2;
     opacity: 1;
@@ -264,19 +264,19 @@
     width: 100%;
     background: #EEE9DE;
     border: 1px solid rgba(29,27,24,0.12);
-    border-radius: 14px;
-    padding: clamp(15px, 1.4vw, 21px) clamp(20px, 1.8vw, 30px) clamp(13px, 1.1vw, 17px);
+    border-radius: 12px;
+    padding: 12px 22px 10px;
     box-shadow: 0 1px 0 rgba(255,255,255,0.55) inset, 0 14px 34px -24px rgba(29,27,24,0.40);
   }
   .curve-instrument .ctl-name { font-family: var(--voice); font-weight: 600; font-size: 15px; color: #1D1B18; }
   .curve-instrument .ctl-sub { font-weight: 400; color: #5A6378; }
   .curve-instrument .ctl-sub sub { font-size: 0.72em; }
-  .curve-instrument .ctl input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 28px; margin-top: 16px; background: transparent; cursor: pointer; }
+  .curve-instrument .ctl input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; margin-top: 10px; background: transparent; cursor: pointer; }
   .curve-instrument .ctl input[type=range]::-webkit-slider-runnable-track { height: 3px; background: rgba(29,27,24,0.20); border-radius: 2px; }
   .curve-instrument .ctl input[type=range]::-moz-range-track { height: 3px; background: rgba(29,27,24,0.20); border-radius: 2px; }
   .curve-instrument .ctl input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; margin-top: -7.5px; border-radius: 50%; background: #1D1B18; border: none; box-shadow: 0 1px 4px rgba(29,27,24,0.30); cursor: grab; }
   .curve-instrument .ctl input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: #1D1B18; border: none; }
-  .curve-instrument .ctl-marks { display: flex; justify-content: space-between; font-family: var(--audit); font-size: 10.5px; letter-spacing: .06em; color: rgba(29,27,24,.5); margin-top: 13px; }
+  .curve-instrument .ctl-marks { display: flex; justify-content: space-between; font-family: var(--audit); font-size: 10.5px; letter-spacing: .06em; color: rgba(29,27,24,.5); margin-top: 8px; }
 
   /* OPENING HERO - two-person layered carousel with scroll parallax */
   .opening-hero-scroll {
