@@ -278,6 +278,15 @@
     box-shadow: 0 1px 0 rgba(255,255,255,0.55) inset, 0 14px 34px -24px rgba(29,27,24,0.40);
   }
   .curve-instrument .ctl-name { font-family: var(--voice); font-weight: 600; font-size: 15px; color: #1D1B18; }
+  .curve-instrument .ctl-name-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .curve-instrument .curve-event-checkbox { position: relative; display: inline-flex; align-items: center; gap: 7px; color: #5A6378; cursor: pointer; font-family: var(--voice); font-size: 12px; font-weight: 400; white-space: nowrap; }
+  .curve-instrument .curve-event-checkbox input { position: absolute; width: 1px; height: 1px; margin: -1px; opacity: 0; overflow: hidden; }
+  .curve-instrument .curve-event-box { width: 16px; height: 16px; border: 1px solid rgba(29,27,24,0.46); background: #FAF7F2; display: grid; place-items: center; transition: background 150ms ease, border-color 150ms ease, box-shadow 150ms ease; }
+  .curve-instrument .curve-event-box::after { content: '✓'; color: #fff; font-size: 12px; font-weight: 700; line-height: 1; opacity: 0; transform: scale(0.7); transition: opacity 150ms ease, transform 150ms ease; }
+  .curve-instrument .curve-event-checkbox input:checked + .curve-event-box { background: #A4452C; border-color: #A4452C; }
+  .curve-instrument .curve-event-checkbox input:checked + .curve-event-box::after { opacity: 1; transform: scale(1); }
+  .curve-instrument .curve-event-checkbox input:focus-visible + .curve-event-box { box-shadow: 0 0 0 3px rgba(164,69,44,0.18); }
+  .curve-instrument #cp-event-branch, .curve-instrument #cp-event-label, .curve-instrument #cp-event-prob, .curve-instrument #cp-event-cap { transition: opacity 180ms ease; }
   .curve-instrument .ctl-sub { font-weight: 400; color: #5A6378; }
   .curve-instrument .ctl-sub sub { font-size: 0.72em; }
   .curve-instrument .ctl input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; margin-top: 10px; background: transparent; cursor: pointer; }
@@ -1507,19 +1516,19 @@
           <text class="axistitle" id="cp-xage" x="864" y="788" text-anchor="middle">AGE</text>
         </g>
         <path id="cp-inkc" fill="none" stroke="#1D1B18" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-        <path id="cp-event-branch" fill="none" stroke="#A4452C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <line id="cp-event-leader" x1="0" y1="0" x2="0" y2="0" stroke="#A4452C" stroke-width="1.25"/>
-        <circle id="cp-event-dot" cx="0" cy="0" r="5.5" fill="#A4452C" stroke="#FAF7F2" stroke-width="2.5"/>
-        <circle id="cp-event-dot2" cx="0" cy="0" r="4" fill="#A4452C"/>
-        <text id="cp-event-label" x="0" y="0" style="font-family:var(--audit);font-size:11px;letter-spacing:.14em;fill:#A4452C">DISEASE EVENT</text>
-        <text id="cp-event-prob" x="0" y="0" style="font-family:var(--voice);font-size:34px;font-weight:600;letter-spacing:-.01em;fill:#A4452C"></text>
-        <text id="cp-event-cap" x="0" y="0" style="font-family:var(--audit);font-size:11px;letter-spacing:.1em;fill:#8A6F66">PROBABILITY</text>
+        <path id="cp-event-branch" opacity="0" fill="none" stroke="#A4452C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <line id="cp-event-leader" opacity="0" x1="0" y1="0" x2="0" y2="0" stroke="#A4452C" stroke-width="1.25"/>
+        <circle id="cp-event-dot" opacity="0" cx="0" cy="0" r="5.5" fill="#A4452C" stroke="#FAF7F2" stroke-width="2.5"/>
+        <circle id="cp-event-dot2" opacity="0" cx="0" cy="0" r="4" fill="#A4452C"/>
+        <text id="cp-event-label" opacity="0" x="0" y="0" style="font-family:var(--audit);font-size:11px;letter-spacing:.14em;fill:#A4452C">DISEASE EVENT</text>
+        <text id="cp-event-prob" opacity="0" x="0" y="0" style="font-family:var(--voice);font-size:34px;font-weight:600;letter-spacing:-.01em;fill:#A4452C"></text>
+        <text id="cp-event-cap" opacity="0" x="0" y="0" style="font-family:var(--audit);font-size:11px;letter-spacing:.1em;fill:#8A6F66">PROBABILITY</text>
         <rect id="cp-p0" width="9" height="9" fill="#1D1B18"/>
         <rect id="cp-p1" width="9" height="9" fill="#1D1B18"/>
       </svg>
       <div class="controls" id="cp-controls">
         <div class="ctl"><div class="ctl-name">Capability <span class="ctl-sub">(VO<sub>2</sub> max)</span></div><input type="range" id="cp-sCap" min="0" max="100" value="40"><div class="ctl-marks"><span>DECONDITIONED</span><span>ELITE</span></div></div>
-        <div class="ctl"><div class="ctl-name">Critical disease risk</div><input type="range" id="cp-sRisk" min="0" max="100" value="50"><div class="ctl-marks"><span>LOW</span><span>HIGH</span></div></div>
+        <div class="ctl"><div class="ctl-name ctl-name-row"><span>Critical disease risk</span><label class="curve-event-checkbox"><input type="checkbox" id="cp-event-toggle"><span class="curve-event-box" aria-hidden="true"></span><span>Show event</span></label></div><input type="range" id="cp-sRisk" min="0" max="100" value="50"><div class="ctl-marks"><span>LOW</span><span>HIGH</span></div></div>
       </div>
       <p class="cp-disc" id="cp-disc"></p>
       <div class="hint" id="cp-hint"></div>
@@ -2199,8 +2208,8 @@
     return pts[pts.length-1][1];
   };
   const $=id=>document.getElementById(id);
-  const sCap=$('cp-sCap'),sRisk=$('cp-sRisk');
-  if(!sCap||!sRisk) return;
+  const sCap=$('cp-sCap'),sRisk=$('cp-sRisk'),eventToggle=$('cp-event-toggle');
+  if(!sCap||!sRisk||!eventToggle) return;
   const cap=()=>+sCap.value;
   function eventModel(){
     const c=cap()/100,r=(+sRisk.value)/100,l=c;
@@ -2248,6 +2257,7 @@
   function render(p){
     const d=cpath(cv);
     inkc.setAttribute('d',d);
+    const showEvent=eventToggle.checked;
     const ev=eventModel();
     eventBranch.setAttribute('d',branchPath(cvEvent,ev.age));
     const L=inkc.getTotalLength();
@@ -2270,7 +2280,7 @@
     eventCap.setAttribute('x',ax);eventCap.setAttribute('y',redY+102);
     eventProbLabel.textContent=Math.round(ev.eventProb*100)+'%';
     eventDot.style.opacity=0;eventDot2.style.opacity=0;eventLeader.style.opacity=0;
-    eventLabel.style.opacity=1;eventProbLabel.style.opacity=1;eventCap.style.opacity=1;eventBranch.style.opacity=1;
+    eventLabel.style.opacity=showEvent?1:0;eventProbLabel.style.opacity=showEvent?1:0;eventCap.style.opacity=showEvent?1:0;eventBranch.style.opacity=showEvent?1:0;
     bandRects.forEach(r=>{ r.style.opacity=1; });
     bandsG.style.opacity=1;gridG.style.opacity=1;axes.style.opacity=1;
     ycap.style.opacity=0;xage.style.opacity=0;
@@ -2295,6 +2305,7 @@
   [sCap,sRisk].forEach(s=>{
     s.addEventListener('input',()=>{render(FIXED);layoutControls();});
   });
+  eventToggle.addEventListener('change',()=>{render(FIXED);layoutControls();});
   addEventListener('resize',()=>{render(FIXED);layoutControls();});
   render(FIXED);layoutControls();requestAnimationFrame(layoutControls);
 })();
