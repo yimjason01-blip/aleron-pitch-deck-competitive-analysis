@@ -1771,9 +1771,9 @@
     return {
       probability: 1 - (1 - cvProbability) * (1 - cancerProbability),
       age: (cvAge * cvProbability + cancerAge * cancerProbability) / total,
-      drop: 0.25,
-      recovery: (0.75 * cvProbability + 0.20 * cancerProbability) / total,
-      tauYears: (0.5 * cvProbability + 2.0 * cancerProbability) / total
+      drop: 0.30,
+      recovery: 0.22,
+      tauYears: 1.4
     };
   }
   function diseaseFactor(age, event) {
@@ -1833,14 +1833,15 @@
     svg += `<rect x="${x(AMIN)-4}" y="${y(baseline(AMIN))-4}" width="8" height="8" fill="#1D1B18"/>`;
     svg += `<rect x="${x(AMAX)-4}" y="${y(baseline(AMAX))-4}" width="8" height="8" fill="#1D1B18"/>`;
 
-    const anchorAge = Math.min(event.age + 9, 86);
-    const anchorX = x(anchorAge);
-    const redY = y(eventCurve(anchorAge));
-    const labelX = anchorX + 10;
-    svg += `<circle cx="${anchorX}" cy="${redY}" r="4" fill="#A4452C"/>`;
-    svg += `<line x1="${anchorX}" y1="${redY}" x2="${anchorX}" y2="${redY + 14}" stroke="#A4452C" stroke-width="1"/>`;
-    svg += `<text class="curve-prob" x="${labelX}" y="${redY + 44}" text-anchor="start">${Math.round(event.probability * 100)}%</text>`;
-    svg += `<text class="curve-meta" x="${labelX}" y="${redY + 62}" text-anchor="start">DISEASE EVENT</text>`;
+    const forkX = x(event.age);
+    const forkY = y(baseline(event.age));
+    const dropY = y(eventCurve(event.age));
+    const labelX = Math.min(forkX + 14, PR - 150);
+    const labelY = Math.min(Math.max(dropY + 38, forkY + 28), PB - 10);
+    svg += `<circle cx="${forkX}" cy="${forkY}" r="5" fill="#A4452C"/>`;
+    svg += `<line x1="${forkX}" y1="${forkY}" x2="${forkX}" y2="${Math.min(labelY - 28, dropY + 8)}" stroke="#A4452C" stroke-width="1"/>`;
+    svg += `<text class="curve-prob" x="${labelX}" y="${labelY}" text-anchor="start">${Math.round(event.probability * 100)}%</text>`;
+    svg += `<text class="curve-meta" x="${labelX}" y="${labelY + 18}" text-anchor="start">DISEASE EVENT</text>`;
     plot.innerHTML = svg;
   }
   [conditioningInput, riskInput].forEach(input => input.addEventListener('input', render));
