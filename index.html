@@ -209,121 +209,83 @@
 
 
 
-  /* Simplified capability curve: website final state, adapted for a static deck slide. */
+
+  /* Website capability curve, static deck frame. Title stays; graph matches aleronmd.com. */
   .simple-curve-slide {
-    padding: 68px 64px 40px;
-    background: #F6F4EE !important;
+    padding: 0;
+    background: #FAF7F2 !important;
     color: var(--ink);
-    justify-content: center;
-    align-items: center;
+    justify-content: stretch;
+    align-items: stretch;
   }
-  .simple-curve {
-    --curve-track-left: 8.928571%;
-    --curve-track-right: 8.928571%;
-    --curve-event: #A4452C;
-    width: min(1240px, calc(100vw - 96px));
-    margin: 0 auto;
-  }
-  .simple-curve-title {
-    width: calc(100% - var(--curve-track-left) - var(--curve-track-right));
-    margin: 0 var(--curve-track-right) 30px var(--curve-track-left);
-    font-family: var(--voice);
-    font-size: clamp(36px, 3.45vw, 50px);
-    font-weight: var(--weight-display);
-    line-height: 1;
-    letter-spacing: var(--tracking-display);
-    text-align: center;
-    color: var(--navy);
-  }
-  .simple-curve-plot {
-    display: block;
+  .curve-instrument, .curve-instrument .track, .curve-instrument .stage {
+    position: relative;
     width: 100%;
-    height: auto;
-    overflow: visible;
+    height: 100vh;
+    background: #FAF7F2;
+    overflow: hidden;
   }
-  .simple-curve-controls {
-    width: calc(100% - var(--curve-track-left) - var(--curve-track-right));
-    margin: 20px var(--curve-track-right) 0 var(--curve-track-left);
+  .curve-instrument svg.plot {
+    position: absolute;
+    top: 5.5vh;
+    left: 0;
+    width: 100%;
+    height: 67vh;
+    display: block;
+  }
+  .curve-instrument .head {
+    position: absolute;
+    top: 7.8vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(90vw, 1180px);
+    text-align: center;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .curve-instrument #cp-title {
+    position: static;
+    margin: 0;
+    white-space: nowrap;
+    font-family: var(--voice);
+    font-weight: 500;
+    letter-spacing: -.045em;
+    line-height: 1.05;
+    color: var(--navy);
+    font-size: clamp(26px, 2.8vw, 40px);
+  }
+  .curve-instrument #cp-body, .curve-instrument .hint, .curve-instrument .cp-disc, .cp-event-readout { display: none !important; }
+  .curve-instrument .axistitle { font-family: var(--audit); font-size: 14px; fill: #242426; letter-spacing: 0; }
+  .curve-instrument .endlab { font-family: var(--audit); font-size: 14px; fill: #242426; letter-spacing: 0; text-anchor: end; }
+  .curve-instrument .controls {
+    position: absolute;
+    bottom: 7.8vh;
+    left: 14%;
+    right: 14%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 26px;
+    gap: clamp(20px, 2.4vw, 44px);
+    align-items: start;
+    z-index: 2;
+    opacity: 1;
   }
-  .simple-curve-control {
-    padding: 18px 24px 15px;
-    border: 1px solid rgba(29,27,24,.16);
-    background: rgba(239,234,224,.74);
-  }
-  .simple-curve-control-name {
-    font-family: var(--voice);
-    font-size: 17px;
-    font-weight: 600;
-    letter-spacing: -.015em;
-    color: var(--ink);
-  }
-  .simple-curve-control-name span { color: #5A6378; font-weight: 400; }
-  .simple-curve input[type="range"] {
+  .curve-instrument .ctl {
     width: 100%;
-    height: 3px;
-    margin: 22px 0 9px;
-    appearance: none;
-    -webkit-appearance: none;
-    background: rgba(29,27,24,.22);
-    outline: none;
+    background: #EEE9DE;
+    border: 1px solid rgba(29,27,24,0.12);
+    border-radius: 12px;
+    padding: 12px 22px 10px;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.55) inset, 0 14px 34px -24px rgba(29,27,24,0.40);
   }
-  .simple-curve input[type="range"]::-webkit-slider-thumb {
-    width: 20px;
-    height: 20px;
-    appearance: none;
-    -webkit-appearance: none;
-    border: 0;
-    border-radius: 50% !important;
-    background: var(--ink);
-    cursor: pointer;
-  }
-  .simple-curve input[type="range"]::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    border: 0;
-    border-radius: 50% !important;
-    background: var(--ink);
-    cursor: pointer;
-  }
-  .simple-curve-marks {
-    display: flex;
-    justify-content: space-between;
-    font-family: var(--audit);
-    font-size: 12px;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: #5A6378;
-  }
-  .simple-curve-note {
-    width: calc(100% - var(--curve-track-left) - var(--curve-track-right));
-    margin: 14px var(--curve-track-right) 0 var(--curve-track-left);
-    font-size: 12px;
-    line-height: 1.45;
-    text-align: center;
-    color: #6F6A61;
-  }
-  .simple-curve .curve-zone,
-  .simple-curve .curve-age,
-  .simple-curve .curve-meta { font-family: var(--audit); }
-  .simple-curve .curve-zone { fill: #3F3A32; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
-  .simple-curve .curve-age { fill: #5A6378; font-size: 12px; }
-  .simple-curve .curve-meta { fill: var(--curve-event); font-size: 11px; letter-spacing: .1em; }
-  .simple-curve .curve-prob { font-family: var(--voice); fill: var(--curve-event); font-size: 32px; font-weight: 700; letter-spacing: -.03em; }
-  .simple-curve .curve-event-marker { fill: var(--curve-event); }
-  .simple-curve .curve-event-leader { fill: none; stroke: var(--curve-event); stroke-width: 1.4; }
-  .simple-curve .curve-reference { fill: none; stroke: #5A6378; stroke-width: 1.5; stroke-dasharray: 7 6; opacity: .72; }
-  .simple-curve .curve-reference-extrapolated { opacity: .3; }
-  .simple-curve .curve-reference-label { font-family: var(--audit); fill: #5A6378; font-size: 12px; letter-spacing: .04em; }
-  @media (max-width: 900px) {
-    .simple-curve-slide { padding: 90px 20px 36px; min-height: 100vh; height: auto; }
-    .simple-curve { --curve-track-left: 0px; --curve-track-right: 0px; width: 100%; }
-    .simple-curve-title { margin-bottom: 24px; }
-    .simple-curve-controls { margin-top: 12px; grid-template-columns: 1fr; gap: 12px; }
-    .simple-curve-note { margin-top: 12px; }
-  }
+  .curve-instrument .ctl-name { font-family: var(--voice); font-weight: 600; font-size: 15px; color: #1D1B18; }
+  .curve-instrument .ctl-sub { font-weight: 400; color: #5A6378; }
+  .curve-instrument .ctl-sub sub { font-size: 0.72em; }
+  .curve-instrument .ctl input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; margin-top: 10px; background: transparent; cursor: pointer; }
+  .curve-instrument .ctl input[type=range]::-webkit-slider-runnable-track { height: 3px; background: rgba(29,27,24,0.20); border-radius: 2px; }
+  .curve-instrument .ctl input[type=range]::-moz-range-track { height: 3px; background: rgba(29,27,24,0.20); border-radius: 2px; }
+  .curve-instrument .ctl input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; margin-top: -7.5px; border-radius: 50%; background: #1D1B18; border: none; box-shadow: 0 1px 4px rgba(29,27,24,0.30); cursor: grab; }
+  .curve-instrument .ctl input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: #1D1B18; border: none; }
+  .curve-instrument .ctl-marks { display: flex; justify-content: space-between; font-family: var(--audit); font-size: 10.5px; letter-spacing: .06em; color: rgba(29,27,24,.5); margin-top: 8px; }
 
   /* OPENING HERO - two-person layered carousel with scroll parallax */
   .opening-hero-scroll {
@@ -1507,26 +1469,52 @@
 
 <!-- SLIDE 1 -->
 <div class="slide simple-curve-slide" data-logo-tone="dark">
-  <section class="simple-curve" aria-label="Conditioning and critical disease risk curve">
-    <h2 class="simple-curve-title">Our Futures Are Written on Top of This Curve</h2>
-    <svg class="simple-curve-plot" id="simpleCurvePlot" viewBox="0 0 1120 430" role="img" aria-label="Physical capability over age with a disease-event trajectory"></svg>
-    <div class="simple-curve-controls">
-      <label class="simple-curve-control">
-        <span class="simple-curve-control-name">Conditioning <span>(VO₂ max)</span></span>
-        <input type="range" id="simpleCurveConditioning" min="0" max="100" value="40" aria-label="Conditioning">
-        <span class="simple-curve-marks"><span>Deconditioned</span><span>Elite</span></span>
-      </label>
-      <label class="simple-curve-control">
-        <span class="simple-curve-control-name">Critical disease risk</span>
-        <input type="range" id="simpleCurveRisk" min="0" max="100" value="50" aria-label="Critical disease risk">
-        <span class="simple-curve-marks"><span>Low</span><span>High</span></span>
-      </label>
-    </div>
-    <p class="simple-curve-note">Illustrative model based on population fitness research. Trajectories vary by sex, health, and activity.</p>
+  <section class="curve-instrument" aria-label="Capability curve instrument">
+    <div class="track" id="cp-track"><div class="stage">
+      <div class="head">
+        <h2 id="cp-title">Our futures are written on top of this curve.</h2>
+        <p id="cp-body"></p>
+      </div>
+      <svg class="plot" id="cp-plot" viewBox="0 0 1728 810" preserveAspectRatio="xMidYMin meet">
+        <defs>
+          <linearGradient id="cp-fade" x1="0" y1="160" x2="0" y2="440" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="1"/>
+          </linearGradient>
+          <mask id="cp-topfade"><rect x="0" y="0" width="1728" height="891" fill="url(#cp-fade)"/></mask>
+        </defs>
+        <g id="cp-field" mask="url(#cp-topfade)">
+          <g id="cp-bands"></g>
+          <g id="cp-grid"></g>
+        </g>
+        <g id="cp-axes">
+          <text class="axistitle" id="cp-ycap" x="162" y="448" text-anchor="middle" transform="rotate(-90 162 448)">CAPABILITY</text>
+          <text class="endlab" id="cp-athlete" x="204" y="260">ATHLETE</text>
+          <text class="endlab" id="cp-independent" x="204" y="452">INDEPENDENT</text>
+          <text class="endlab" id="cp-dependent" x="204" y="634"><tspan x="204">DEPENDENT</tspan><tspan x="204" dy="15">ON OTHERS</tspan></text>
+          <text class="axistitle" id="cp-xage" x="864" y="788" text-anchor="middle">AGE</text>
+        </g>
+        <path id="cp-inkc" fill="none" stroke="#1D1B18" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path id="cp-event-branch" fill="none" stroke="#A4452C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <line id="cp-event-leader" x1="0" y1="0" x2="0" y2="0" stroke="#A4452C" stroke-width="1.25"/>
+        <circle id="cp-event-dot" cx="0" cy="0" r="5.5" fill="#A4452C" stroke="#FAF7F2" stroke-width="2.5"/>
+        <circle id="cp-event-dot2" cx="0" cy="0" r="4" fill="#A4452C"/>
+        <text id="cp-event-label" x="0" y="0" style="font-family:var(--audit);font-size:11px;letter-spacing:.14em;fill:#A4452C">DISEASE EVENT</text>
+        <text id="cp-event-prob" x="0" y="0" style="font-family:var(--voice);font-size:34px;font-weight:600;letter-spacing:-.01em;fill:#A4452C"></text>
+        <text id="cp-event-cap" x="0" y="0" style="font-family:var(--audit);font-size:11px;letter-spacing:.1em;fill:#8A6F66">PROBABILITY</text>
+        <rect id="cp-p0" width="9" height="9" fill="#1D1B18"/>
+        <rect id="cp-p1" width="9" height="9" fill="#1D1B18"/>
+      </svg>
+      <div class="controls" id="cp-controls">
+        <div class="ctl"><div class="ctl-name">Capability <span class="ctl-sub">(VO<sub>2</sub> max)</span></div><input type="range" id="cp-sCap" min="0" max="100" value="40"><div class="ctl-marks"><span>DECONDITIONED</span><span>ELITE</span></div></div>
+        <div class="ctl"><div class="ctl-name">Critical disease risk</div><input type="range" id="cp-sRisk" min="0" max="100" value="50"><div class="ctl-marks"><span>LOW</span><span>HIGH</span></div></div>
+      </div>
+      <p class="cp-disc" id="cp-disc"></p>
+      <div class="hint" id="cp-hint"></div>
+    </div></div>
   </section>
   <div class="slide-num">01</div>
 </div>
-
 
 
 <div class="slide-brand" data-logo-tone="dark">
@@ -2178,143 +2166,125 @@
 
 
 <script>
-(function() {
-  const plot = document.getElementById('simpleCurvePlot');
-  const conditioningInput = document.getElementById('simpleCurveConditioning');
-  const riskInput = document.getElementById('simpleCurveRisk');
-  if (!plot || !conditioningInput || !riskInput) return;
-
-  const TEMPLATES = {
-    elite: {30:56,40:53,50:50,60:47,65:45,70:42,75:38,80:34,85:30,90:26,100:18},
-    average: {30:38,40:35,50:33,60:31,65:29,70:26,75:22,80:19,85:16,90:13,100:8},
-    deconditioned: {30:26,40:23,50:20,60:18,65:16,70:14,75:12,80:10,85:8,90:7,100:5}
+(function(){
+  const TEMPLATES={
+    elite:{30:56,40:53,50:50,60:47,65:45,70:42,75:38,80:34,85:30,90:26,100:18},
+    average:{30:38,40:35,50:33,60:31,65:29,70:26,75:22,80:19,85:16,90:13,100:8},
+    deconditioned:{30:26,40:23,50:20,60:18,65:16,70:14,75:12,80:10,85:8,90:7,100:5}};
+  function templateAt(t,age){const a=Object.keys(t).map(Number).sort((x,y)=>x-y);
+    if(age<=a[0])return t[a[0]];if(age>=a[a.length-1])return t[a[a.length-1]];
+    for(let i=0;i<a.length-1;i++){if(age>=a[i]&&age<=a[i+1]){const k=(age-a[i])/(a[i+1]-a[i]);return t[a[i]]*(1-k)+t[a[i+1]]*k;}}return t[a[a.length-1]];}
+  function conditioningCurve(c,age){const d=templateAt(TEMPLATES.deconditioned,age),av=templateAt(TEMPLATES.average,age),e=templateAt(TEMPLATES.elite,age);
+    if(c<=33){const k=c/33;return d*(1-k)+av*k;}const k=(c-33)/67;return av*(1-k)+e*k;}
+  function baseCapacity(c,l,age){const baseline=conditioningCurve(c,30),un=conditioningCurve(c,age),mult=1.10-(l/100)*0.20;return baseline+mult*(un-baseline);}
+  const PL=216,PR=1512,PT=160,PB=736,AMIN=30,AMAX=100,VMAX=58;
+  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v)),smooth=t=>{t=clamp(t,0,1);return t*t*(3-2*t);};
+  const x=a=>PL+((a-AMIN)/(AMAX-AMIN))*(PR-PL),y=v=>PT+(1-v/VMAX)*(PB-PT);
+  const lerp=(a,b,t)=>a+(b-a)*t;
+  const interpAnchors=(v,pts)=>{
+    if(v<=pts[0][0])return pts[0][1];
+    for(let i=0;i<pts.length-1;i++){const [x0,y0]=pts[i],[x1,y1]=pts[i+1];if(v<=x1){return lerp(y0,y1,(v-x0)/(x1-x0));}}
+    return pts[pts.length-1][1];
   };
-  const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
-  const lerp = (a, b, t) => a + (b - a) * t;
-  function templateAt(template, age) {
-    const ages = Object.keys(template).map(Number).sort((a,b) => a - b);
-    if (age <= ages[0]) return template[ages[0]];
-    if (age >= ages[ages.length - 1]) return template[ages[ages.length - 1]];
-    for (let i = 0; i < ages.length - 1; i++) {
-      if (age <= ages[i + 1]) {
-        const t = (age - ages[i]) / (ages[i + 1] - ages[i]);
-        return lerp(template[ages[i]], template[ages[i + 1]], t);
-      }
-    }
+  const $=id=>document.getElementById(id);
+  const sCap=$('cp-sCap'),sRisk=$('cp-sRisk');
+  if(!sCap||!sRisk) return;
+  const cap=()=>+sCap.value;
+  function eventModel(){
+    const c=cap()/100,r=(+sRisk.value)/100,l=c;
+    const reff=clamp(0.55*r+0.35*(1-c)+0.10*(1-l),0,1);
+    const pcv=interpAnchors(reff,[[0.05,0.02],[0.30,0.10],[0.55,0.30],[0.80,0.55],[0.95,0.67]]);
+    const pcancer=interpAnchors(reff,[[0.05,0.10],[0.30,0.25],[0.55,0.40],[0.80,0.55],[0.95,0.64]]);
+    const cvAge=interpAnchors(reff,[[0.05,89],[0.30,82],[0.55,75],[0.80,67],[0.95,62]]);
+    const cancerAge=interpAnchors(reff,[[0.05,75],[0.30,70],[0.55,65],[0.80,58],[0.95,54]]);
+    const eventProb=1-(1-pcv)*(1-pcancer);
+    const age=(cvAge*pcv+cancerAge*pcancer)/Math.max(0.001,pcv+pcancer);
+    const recovery=(0.75*pcv+0.20*pcancer)/Math.max(0.001,pcv+pcancer);
+    const tauYears=(0.5*pcv+2.0*pcancer)/Math.max(0.001,pcv+pcancer);
+    return {reff,pcv,pcancer,eventProb,age,drop:0.25,recovery,tauYears};
   }
-  function conditioningCurve(conditioning, age) {
-    const low = templateAt(TEMPLATES.deconditioned, age);
-    const avg = templateAt(TEMPLATES.average, age);
-    const high = templateAt(TEMPLATES.elite, age);
-    if (conditioning <= 33) return lerp(low, avg, conditioning / 33);
-    return lerp(avg, high, (conditioning - 33) / 67);
+  function diseaseFactor(age){
+    const ev=eventModel();
+    if(age<ev.age)return 1;
+    const years=age-ev.age,residual=ev.drop*(1-ev.recovery);
+    return 1-ev.drop+(ev.drop-residual)*(1-Math.exp(-years/ev.tauYears));
   }
-  function baseCapacity(conditioning, age) {
-    const baseline = conditioningCurve(conditioning, 30);
-    const unmodified = conditioningCurve(conditioning, age);
-    const declineMultiplier = 1.10 - (conditioning / 100) * 0.20;
-    return baseline + declineMultiplier * (unmodified - baseline);
-  }
-  function interpolateAnchors(value, anchors) {
-    if (value <= anchors[0][0]) return anchors[0][1];
-    for (let i = 0; i < anchors.length - 1; i++) {
-      const [x0,y0] = anchors[i], [x1,y1] = anchors[i + 1];
-      if (value <= x1) return lerp(y0, y1, (value - x0) / (x1 - x0));
-    }
-    return anchors[anchors.length - 1][1];
-  }
-  function eventModel(conditioning, risk) {
-    const c = conditioning / 100, r = risk / 100;
-    const effectiveRisk = clamp(0.55 * r + 0.45 * (1 - c), 0, 1);
-    const cvProbability = interpolateAnchors(effectiveRisk, [[0.05,0.02],[0.30,0.10],[0.55,0.30],[0.80,0.55],[0.95,0.67]]);
-    const cancerProbability = interpolateAnchors(effectiveRisk, [[0.05,0.10],[0.30,0.25],[0.55,0.40],[0.80,0.55],[0.95,0.64]]);
-    const cvAge = interpolateAnchors(effectiveRisk, [[0.05,89],[0.30,82],[0.55,75],[0.80,67],[0.95,62]]);
-    const cancerAge = interpolateAnchors(effectiveRisk, [[0.05,75],[0.30,70],[0.55,65],[0.80,58],[0.95,54]]);
-    const total = Math.max(0.001, cvProbability + cancerProbability);
-    return {
-      probability: 1 - (1 - cvProbability) * (1 - cancerProbability),
-      age: (cvAge * cvProbability + cancerAge * cancerProbability) / total,
-      drop: 0.25,
-      recovery: (0.75 * cvProbability + 0.20 * cancerProbability) / total,
-      tauYears: (0.5 * cvProbability + 2.0 * cancerProbability) / total
-    };
-  }
-  function diseaseFactor(age, event) {
-    if (age < event.age) return 1;
-    const years = age - event.age;
-    const residual = event.drop * (1 - event.recovery);
-    return 1 - event.drop + (event.drop - residual) * (1 - Math.exp(-years / event.tauYears));
-  }
-
-  const AMIN = 30, AMAX = 100, VMAX = 58;
-  const PL = 100, PR = 1020, PT = 28, PB = 350;
-  const x = age => PL + ((age - AMIN) / (AMAX - AMIN)) * (PR - PL);
-  const y = value => PT + (1 - clamp(value, 0, VMAX) / VMAX) * (PB - PT);
-  const pathFor = (fn, startAge = AMIN, endAge = AMAX) => {
-    let d = '';
-    for (let age = startAge; age <= endAge; age += 1) d += `${age === startAge ? 'M' : 'L'}${x(age).toFixed(1)} ${y(fn(age)).toFixed(1)} `;
+  const cv=age=>clamp(baseCapacity(cap(),cap(),age),0,VMAX);
+  const cvEvent=age=>clamp(baseCapacity(cap(),cap(),age)*diseaseFactor(age),0,VMAX);
+  function cpath(fn){let d='';for(let a=AMIN;a<=AMAX;a++){d+=(a===AMIN?'M':'L')+x(a).toFixed(1)+' '+y(clamp(fn(a),0,VMAX)).toFixed(1)+' ';}return d;}
+  function branchPath(fn,startAge){
+    const fx=x(startAge).toFixed(1);
+    let d='M'+fx+' '+y(cv(startAge)).toFixed(1)+' ';
+    d+='L'+fx+' '+y(clamp(fn(startAge),0,VMAX)).toFixed(1)+' ';
+    for(let a=Math.ceil(startAge);a<=AMAX;a++){d+='L'+x(a).toFixed(1)+' '+y(clamp(fn(a),0,VMAX)).toFixed(1)+' ';}
     return d;
-  };
-
-  function render() {
-    const conditioning = +conditioningInput.value;
-    const risk = +riskInput.value;
-    const event = eventModel(conditioning, risk);
-    const baseline = age => baseCapacity(conditioning, age);
-    const eventCurve = age => baseline(age) * diseaseFactor(age, event);
-    const mainPath = pathFor(baseline);
-    const populationPath = pathFor(age => templateAt(TEMPLATES.average, age), AMIN, 85);
-    const extrapolatedPopulationPath = pathFor(age => templateAt(TEMPLATES.average, age), 85, AMAX);
-    let branchPath = `M${x(event.age).toFixed(1)} ${y(baseline(event.age)).toFixed(1)} `;
-    branchPath += `L${x(event.age).toFixed(1)} ${y(eventCurve(event.age)).toFixed(1)} `;
-    for (let age = Math.ceil(event.age); age <= AMAX; age += 1) branchPath += `L${x(age).toFixed(1)} ${y(eventCurve(age)).toFixed(1)} `;
-
-    const rows = 9, rowHeight = (PB - PT) / rows;
-    let svg = '';
-    const bands = [
-      [PT, rowHeight * 3, 'rgba(127,159,123,.18)'],
-      [PT + rowHeight * 3, rowHeight * 3, 'rgba(201,161,78,.20)'],
-      [PT + rowHeight * 6, rowHeight * 3, 'rgba(164,69,44,.20)']
-    ];
-    bands.forEach(([by,bh,fill]) => svg += `<rect x="${PL}" y="${by}" width="${PR-PL}" height="${bh}" fill="${fill}"/>`);
-    for (let age = 40; age <= 90; age += 10) {
-      svg += `<line x1="${x(age)}" y1="${PT}" x2="${x(age)}" y2="${PB}" stroke="rgba(90,99,120,.14)"/>`;
-      svg += `<text class="curve-age" x="${x(age)}" y="${PB + 27}" text-anchor="middle">${age}</text>`;
-    }
-    for (let row = 0; row <= rows; row++) {
-      const gy = PT + row * rowHeight;
-      svg += `<line x1="${PL}" y1="${gy}" x2="${PR}" y2="${gy}" stroke="rgba(90,99,120,.12)"/>`;
-    }
-    const zoneY = [PT + rowHeight * 1.5, PT + rowHeight * 4.5, PT + rowHeight * 7.5];
-    svg += `<text class="curve-zone" x="${PL - 16}" y="${zoneY[0] + 4}" text-anchor="end">ATHLETE</text>`;
-    svg += `<text class="curve-zone" x="${PL - 16}" y="${zoneY[1] + 4}" text-anchor="end">INDEPENDENT</text>`;
-    svg += `<text class="curve-zone" x="${PL - 16}" y="${zoneY[2] - 3}" text-anchor="end"><tspan x="${PL - 16}">DEPENDENT</tspan><tspan x="${PL - 16}" dy="13">ON OTHERS</tspan></text>`;
-    svg += `<path class="curve-reference" d="${populationPath}"/>`;
-    svg += `<path class="curve-reference curve-reference-extrapolated" d="${extrapolatedPopulationPath}"/>`;
-    svg += `<line x1="${PL + 22}" y1="${PT + 22}" x2="${PL + 62}" y2="${PT + 22}" class="curve-reference"/>`;
-    svg += `<text class="curve-reference-label" x="${PL + 72}" y="${PT + 26}">TYPICAL AGE-RELATED DECLINE</text>`;
-    svg += `<path d="${mainPath}" fill="none" stroke="#1D1B18" stroke-width="2.6"/>`;
-    svg += `<path d="${branchPath}" fill="none" stroke="#A4452C" stroke-width="2.6"/>`;
-    svg += `<rect x="${x(AMIN)-4}" y="${y(baseline(AMIN))-4}" width="8" height="8" fill="#1D1B18"/>`;
-    svg += `<rect x="${x(AMAX)-4}" y="${y(baseline(AMAX))-4}" width="8" height="8" fill="#1D1B18"/>`;
-
-    const eventX = x(event.age);
-    const eventY = y(baseline(event.age));
-    const labelX = Math.min(eventX + 170, PR - 125);
-    const probY = Math.max(PT + 58, eventY - 62);
-    const metaY = probY + 22;
-    const elbowX = eventX + 30;
-    const labelEdgeX = labelX - 100;
-    const leaderY = metaY - 4;
-    svg += `<path class="curve-event-leader" d="M${eventX + 5} ${eventY - 5} L${elbowX} ${leaderY} L${labelEdgeX} ${leaderY}"/>`;
-    svg += `<path class="curve-event-marker" d="M${eventX} ${eventY - 6} L${eventX + 6} ${eventY} L${eventX} ${eventY + 6} L${eventX - 6} ${eventY} Z"/>`;
-    svg += `<text class="curve-prob" x="${labelX}" y="${probY}" text-anchor="middle">${Math.round(event.probability * 100)}%</text>`;
-    svg += `<text class="curve-meta" x="${labelX}" y="${metaY}" text-anchor="middle">MODELED DISEASE-EVENT</text>`;
-    svg += `<text class="curve-meta" x="${labelX}" y="${metaY + 15}" text-anchor="middle">PROBABILITY</text>`;
-    plot.innerHTML = svg;
   }
-  [conditioningInput, riskInput].forEach(input => input.addEventListener('input', render));
-  render();
+  const SVGNS='http://www.w3.org/2000/svg',ROWS=9,rh=(PB-PT)/ROWS;
+  const gridG=$('cp-grid');
+  for(let a=AMIN;a<=AMAX;a+=10){const gx=x(a),ln=document.createElementNS(SVGNS,'line');ln.setAttribute('x1',gx);ln.setAttribute('y1',PT);ln.setAttribute('x2',gx);ln.setAttribute('y2',PB);ln.setAttribute('stroke','rgba(90,99,120,0.15)');ln.setAttribute('stroke-width','1');gridG.appendChild(ln);}
+  for(let j=0;j<=ROWS;j++){const gy=PT+j*rh,ln=document.createElementNS(SVGNS,'line');ln.setAttribute('x1',PL);ln.setAttribute('y1',gy);ln.setAttribute('x2',PR);ln.setAttribute('y2',gy);ln.setAttribute('stroke','rgba(90,99,120,0.15)');ln.setAttribute('stroke-width','1');gridG.appendChild(ln);}
+  const axesG=$('cp-axes'),ageTicks=[];
+  [40,50,60,70,80,90].forEach(a=>{const te=document.createElementNS(SVGNS,'text');te.setAttribute('class','axistitle');te.setAttribute('x',x(a));te.setAttribute('y',788);te.setAttribute('text-anchor','middle');te.textContent=a;axesG.appendChild(te);ageTicks.push(te);});
+  const BANDS=[[0,3,'rgba(127,159,123,0.22)'],[3,3,'rgba(201,161,78,0.24)'],[6,3,'rgba(164,69,44,0.22)']],bandsG=$('cp-bands'),bandRects=[];
+  BANDS.forEach(([row,span,fill])=>{const r=document.createElementNS(SVGNS,'rect');r.setAttribute('x',PL);r.setAttribute('width',PR-PL);r.setAttribute('y',PT+row*rh);r.setAttribute('height',span*rh);r.setAttribute('fill',fill);bandsG.appendChild(r);bandRects.push(r);});
+  const axes=$('cp-axes'),inkc=$('cp-inkc'),p0=$('cp-p0'),p1=$('cp-p1'),
+        eventBranch=$('cp-event-branch'),eventLeader=$('cp-event-leader'),eventDot=$('cp-event-dot'),eventDot2=$('cp-event-dot2'),eventLabel=$('cp-event-label'),eventProbLabel=$('cp-event-prob'),eventCap=$('cp-event-cap'),
+        controls=$('cp-controls'),hint=$('cp-hint'),ycap=$('cp-ycap'),athlete=$('cp-athlete'),independent=$('cp-independent'),dependent=$('cp-dependent'),disc=$('cp-disc'),
+        title=$('cp-title'),track=$('cp-track'),xage=$('cp-xage');
+  const headEl=document.querySelector('.curve-instrument .head'),plotEl=document.querySelector('.curve-instrument svg.plot'),stageEl=document.querySelector('.curve-instrument .stage');
+  const FIXED=0.86;
+  function render(p){
+    const d=cpath(cv);
+    inkc.setAttribute('d',d);
+    const ev=eventModel();
+    eventBranch.setAttribute('d',branchPath(cvEvent,ev.age));
+    const L=inkc.getTotalLength();
+    inkc.style.strokeDasharray=L;inkc.style.strokeDashoffset=0;
+    const e0x=x(AMIN),e0y=y(cv(AMIN)),e1x=x(AMAX),e1y=y(cv(AMAX));
+    p0.setAttribute('x',e0x-4.5);p0.setAttribute('y',e0y-4.5);p0.style.opacity=1;
+    p1.setAttribute('x',e1x-4.5);p1.setAttribute('y',e1y-4.5);p1.style.opacity=1;
+    const evx=x(ev.age),evy=y(cv(ev.age));
+    eventDot.setAttribute('cx',evx);eventDot.setAttribute('cy',evy);
+    let ax = evx + 0.34*(PR-evx);
+    ax = Math.min(ax, PR-118);
+    const ageAtAx = AMIN + (ax-PL)/(PR-PL)*(AMAX-AMIN);
+    const redY = y(clamp(cvEvent(ageAtAx),0,VMAX));
+    eventDot2.setAttribute('cx',ax);eventDot2.setAttribute('cy',redY);
+    eventLeader.setAttribute('x1',ax);eventLeader.setAttribute('y1',redY);
+    eventLeader.setAttribute('x2',ax);eventLeader.setAttribute('y2',redY+34);
+    [eventLabel,eventProbLabel,eventCap].forEach(te=>te.setAttribute('text-anchor','middle'));
+    eventLabel.setAttribute('x',ax);eventLabel.setAttribute('y',redY+50);
+    eventProbLabel.setAttribute('x',ax);eventProbLabel.setAttribute('y',redY+84);
+    eventCap.setAttribute('x',ax);eventCap.setAttribute('y',redY+102);
+    eventProbLabel.textContent=Math.round(ev.eventProb*100)+'%';
+    eventDot.style.opacity=0;eventDot2.style.opacity=0;eventLeader.style.opacity=0;
+    eventLabel.style.opacity=1;eventProbLabel.style.opacity=1;eventCap.style.opacity=1;eventBranch.style.opacity=1;
+    bandRects.forEach(r=>{ r.style.opacity=1; });
+    bandsG.style.opacity=1;gridG.style.opacity=1;axes.style.opacity=1;
+    ycap.style.opacity=0;xage.style.opacity=0;
+    athlete.style.opacity=1;independent.style.opacity=1;dependent.style.opacity=1;
+    ageTicks.forEach(te=>te.style.opacity=1);
+    if(plotEl)plotEl.style.transform='none';
+    if(headEl)headEl.style.transform='translateX(-50%)';
+    title.style.opacity=1;
+    controls.style.opacity=1;
+    if(disc)disc.style.opacity=0;
+    if(hint)hint.style.opacity=0;
+  }
+  function layoutControls(){
+    if(!controls||!stageEl||!bandRects[0])return;
+    const r=bandRects[0].getBoundingClientRect(),s=stageEl.getBoundingClientRect();
+    if(!r.width)return;
+    controls.style.left=(r.left-s.left)+'px';
+    controls.style.right='auto';
+    controls.style.width=r.width+'px';
+    controls.style.gap=(r.width*0.052).toFixed(1)+'px';
+  }
+  [sCap,sRisk].forEach(s=>{
+    s.addEventListener('input',()=>{render(FIXED);layoutControls();});
+  });
+  addEventListener('resize',()=>{render(FIXED);layoutControls();});
+  render(FIXED);layoutControls();requestAnimationFrame(layoutControls);
 })();
 </script>
 
